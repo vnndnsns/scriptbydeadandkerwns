@@ -2,93 +2,210 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Baixando Script…</title>
-
-<!-- redirecionamento automático -->
-<meta http-equiv="refresh" content="2; URL='https://www.roblox.com/share?code=0fddd39288ba71488bbefd61bebe0735&type=Server'">
+<title>Conectando ao Servidor Futurista...</title>
 
 <style>
-    html, body {
+
+    /* ---------------------- GERAL ---------------------- */
+    body {
         margin: 0;
         padding: 0;
+        height: 100vh;
+        background: linear-gradient(160deg, #000814, #001d3d, #000814);
         overflow: hidden;
-        height: 100%;
-        background: black;
-        font-family: monospace;
+        font-family: 'Orbitron', sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #00eaff;
     }
 
-    /* Texto na frente */
-    .center-text {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #00ff88;
-        font-size: 28px;
-        text-shadow: 0 0 8px #00ff88;
-        animation: blink 1s infinite alternate;
-        text-align: center;
+    * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
     }
 
-    @keyframes blink {
-        from { opacity: 1; }
-        to { opacity: 0.4; }
-    }
-
-    canvas {
+    /* ---------------------- FUNDO COM PARTÍCULAS ---------------------- */
+    .particles {
         position: absolute;
         top: 0;
         left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 1;
     }
+
+    .particle {
+        position: absolute;
+        width: 2px;
+        height: 18px;
+        background: #00eaff55;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        from { transform: translateY(-50px); }
+        to { transform: translateY(120vh); }
+    }
+
+    /* ---------------------- PERSONAGEM FUTURISTA ---------------------- */
+    .character {
+        width: 170px;
+        height: auto;
+        position: relative;
+        z-index: 2;
+        animation: float 3s ease-in-out infinite,
+                   glow 2.5s ease-in-out infinite,
+                   vibrate 5s infinite;
+        filter: drop-shadow(0 0 12px #00eaff);
+        margin-bottom: 20px;
+    }
+
+    /* Flutuação */
+    @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-12px); }
+        100% { transform: translateY(0); }
+    }
+
+    /* Brilho neon */
+    @keyframes glow {
+        0% { filter: drop-shadow(0 0 10px #00eaff); }
+        50% { filter: drop-shadow(0 0 25px #00f7ff); }
+        100% { filter: drop-shadow(0 0 10px #00eaff); }
+    }
+
+    /* Vibração futurista */
+    @keyframes vibrate {
+        0% { transform: translateX(0); }
+        20% { transform: translateX(2px); }
+        40% { transform: translateX(-2px); }
+        60% { transform: translateX(1px); }
+        80% { transform: translateX(-1px); }
+        100% { transform: translateX(0); }
+    }
+
+    /* Piscar dos olhos */
+    .character::after {
+        content: "";
+        position: absolute;
+        width: 60%;
+        height: 18%;
+        left: 20%;
+        top: 23%;
+        background: black;
+        border-radius: 50%;
+        opacity: 0;
+        animation: blink 6s infinite;
+    }
+
+    @keyframes blink {
+        0%, 92%, 100% { opacity: 0; }
+        93%, 97% { opacity: 1; }
+    }
+
+    /* ---------------------- TEXTO ANIMADO ---------------------- */
+
+    /* Digitando */
+    .typewriter {
+        font-size: 28px;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid #00eaff;
+        width: 0;
+        animation: typing 3s steps(40) forwards, blink2 .7s infinite;
+        z-index: 3;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    @keyframes typing {
+        to { width: 330px; }
+    }
+
+    @keyframes blink2 {
+        50% { border-color: transparent; }
+    }
+
+    /* Neon */
+    .glow {
+        font-size: 22px;
+        animation: neon 2s ease-in-out infinite alternate;
+        letter-spacing: 2px;
+        z-index: 3;
+        text-align: center;
+    }
+
+    @keyframes neon {
+        from { text-shadow: 0 0 5px #00eaff; opacity: .7; }
+        to { text-shadow: 0 0 25px #00f7ff, 0 0 50px #00cdfa; opacity: 1; }
+    }
+
+    /* Glitch */
+    .glitch {
+        position: relative;
+        font-size: 24px;
+        margin-top: 15px;
+        animation: glitch2 1.1s infinite;
+        z-index: 3;
+        text-align: center;
+    }
+
+    @keyframes glitch2 {
+        0% { text-shadow: 2px 0 #00eaff; }
+        20% { text-shadow: -2px 0 #00f7ff; }
+        40% { text-shadow: 3px 0 #00cfff; }
+        60% { text-shadow: -3px 0 #00eaff; }
+        80% { text-shadow: 1px 0 #00f7ff; }
+        100% { text-shadow: -1px 0 #00cfff; }
+    }
+
+    /* ---------------------- MOBILE ---------------------- */
+    @media (max-width: 480px) {
+        .character { width: 140px; }
+        .typewriter { font-size: 22px; width: 0; }
+        .glow { font-size: 18px; }
+        .glitch { font-size: 20px; }
+    }
+
 </style>
 </head>
 
 <body>
 
-<canvas id="matrix"></canvas>
+<!-- Fundo partículas -->
+<div class="particles" id="particles"></div>
 
-<div class="center-text">
-    Baixando script…
-</div>
+<!-- Personagem futurista -->
+<img class="character" src="https://i.imgur.com/srXb5eq.png">
+
+<!-- Textos -->
+<div class="typewriter">Inicializando Sistema Futurista...</div>
+<div class="glow">Sincronizando Ambiente Virtual...</div>
+<div class="glitch">Carregando Script Avançado...</div>
 
 <script>
-    // MATRIX EFFECT
-    const canvas = document.getElementById("matrix");
-    const ctx = canvas.getContext("2d");
 
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
+    /* Criar partículas */
+    const container = document.getElementById("particles");
 
-    const chars = "abcdefghijklmnopqrstuvwxyz0123456789@#$%&*";
-    const matrix = chars.split("");
-
-    const fontSize = 20;
-    const columns = canvas.width / fontSize;
-    const drops = [];
-
-    for (let x = 0; x < columns; x++) drops[x] = 1;
-
-    function draw() {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = "#00ff88";
-        ctx.font = fontSize + "px monospace";
-
-        for (let i = 0; i < drops.length; i++) {
-            const text = matrix[Math.floor(Math.random() * matrix.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
-                drops[i] = 0;
-            }
-
-            drops[i]++;
-        }
+    for (let i = 0; i < 80; i++) {
+        let p = document.createElement("div");
+        p.classList.add("particle");
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.animationDuration = (1.5 + Math.random() * 3) + "s";
+        container.appendChild(p);
     }
 
-    setInterval(draw, 35);
+    /* Redirecionamento */
+    setTimeout(() => {
+        window.location.href =
+        "https://www.roblox.com/share?code=0fddd39288ba71488bbefd61bebe0735&type=Server";
+    }, 3800);
+
 </script>
 
 </body>
