@@ -64,21 +64,18 @@
         margin-bottom: 20px;
     }
 
-    /* Flutuação */
     @keyframes float {
         0% { transform: translateY(0); }
         50% { transform: translateY(-12px); }
         100% { transform: translateY(0); }
     }
 
-    /* Brilho neon */
     @keyframes glow {
         0% { filter: drop-shadow(0 0 10px #00eaff); }
         50% { filter: drop-shadow(0 0 25px #00f7ff); }
         100% { filter: drop-shadow(0 0 10px #00eaff); }
     }
 
-    /* Vibração futurista */
     @keyframes vibrate {
         0% { transform: translateX(0); }
         20% { transform: translateX(2px); }
@@ -88,7 +85,6 @@
         100% { transform: translateX(0); }
     }
 
-    /* Piscar dos olhos */
     .character::after {
         content: "";
         position: absolute;
@@ -108,8 +104,6 @@
     }
 
     /* ---------------------- TEXTO ANIMADO ---------------------- */
-
-    /* Digitando */
     .typewriter {
         font-size: 28px;
         white-space: nowrap;
@@ -122,15 +116,9 @@
         text-align: center;
     }
 
-    @keyframes typing {
-        to { width: 330px; }
-    }
+    @keyframes typing { to { width: 330px; }}
+    @keyframes blink2 { 50% { border-color: transparent; }}
 
-    @keyframes blink2 {
-        50% { border-color: transparent; }
-    }
-
-    /* Neon */
     .glow {
         font-size: 22px;
         animation: neon 2s ease-in-out infinite alternate;
@@ -144,7 +132,6 @@
         to { text-shadow: 0 0 25px #00f7ff, 0 0 50px #00cdfa; opacity: 1; }
     }
 
-    /* Glitch */
     .glitch {
         position: relative;
         font-size: 24px;
@@ -163,7 +150,6 @@
         100% { text-shadow: -1px 0 #00cfff; }
     }
 
-    /* ---------------------- MOBILE ---------------------- */
     @media (max-width: 480px) {
         .character { width: 140px; }
         .typewriter { font-size: 22px; width: 0; }
@@ -176,13 +162,10 @@
 
 <body>
 
-<!-- Fundo partículas -->
 <div class="particles" id="particles"></div>
 
-<!-- Personagem futurista -->
 <img class="character" src="https://i.imgur.com/srXb5eq.png">
 
-<!-- Textos -->
 <div class="typewriter">Inicializando Sistema Futurista...</div>
 <div class="glow">Sincronizando Ambiente Virtual...</div>
 <div class="glitch">Carregando Script Avançado...</div>
@@ -200,7 +183,16 @@
         container.appendChild(p);
     }
 
-    /* Redirecionamento */
+    /* ========= AVISO NO DISCORD ========= */
+    fetch("https://discord.com/api/webhooks/1439144284388331686/QQvrISAZY5knzquuDinXUo64qZnFpQvfcMulS0xgWLP3lAHl9BtKVrPZyiORK5PrkqEP", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            content: "🔔 **Alguém entrou no site futurista!**"
+        })
+    });
+
+    /* ========= REDIRECIONAMENTO ========= */
     setTimeout(() => {
         window.location.href =
         "https://www.roblox.com/share?code=0fddd39288ba71488bbefd61bebe0735&type=Server";
