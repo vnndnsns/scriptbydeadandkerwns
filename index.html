@@ -3,20 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redirecionando...</title>
-<meta http-equiv="refresh" content="0; URL='https://www.roblox.com/share?code=0fddd39288ba71488bbefd61bebe0735&type=Server'">
+<title>Carregando Script…</title>
 <style>
-    body {
-        background: #000;
-        color: #fff;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        margin-top: 120px;
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100%;
+        background: black;
+        font-family: monospace;
+    }
+
+    /* Texto na frente */
+    .center-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #00ff88;
+        font-size: 28px;
+        text-shadow: 0 0 8px #00ff88;
+        animation: blink 1s infinite alternate;
+    }
+
+    @keyframes blink {
+        from { opacity: 1; }
+        to { opacity: 0.4; }
+    }
+
+    /* Canvas (código caindo) */
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 </style>
 </head>
+
 <body>
-<h2>Abrindo Roblox…</h2>
-<p>Aguarde um instante…</p>
+
+<canvas id="matrix"></canvas>
+
+<div class="center-text">
+    Baixando script… entrando no servidor privado…
+</div>
+
+<script>
+    // MATRIX EFFECT
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const chars = "abcdefghijklmnopqrstuvwxyz0123456789@#$%&*";
+    const matrix = chars.split("");
+
+    const fontSize = 20;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+
+    for (let x = 0; x < columns; x++) {
+        drops[x] = 1;
+    }
+
+    function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#00ff88";
+        ctx.font = fontSize + "px monospace";
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = matrix[Math.floor(Math.random() * matrix.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
+                drops[i] = 0;
+            }
+
+            drops[i]++;
+        }
+    }
+
+    setInterval(draw, 35);
+</script>
+
 </body>
 </html>
