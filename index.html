@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carregando Script…</title>
+<title>Baixando Script…</title>
+
+<!-- redirecionamento automático -->
+<meta http-equiv="refresh" content="2; URL='https://www.roblox.com/share?code=0fddd39288ba71488bbefd61bebe0735&type=Server'">
+
 <style>
     html, body {
         margin: 0;
@@ -24,6 +28,7 @@
         font-size: 28px;
         text-shadow: 0 0 8px #00ff88;
         animation: blink 1s infinite alternate;
+        text-align: center;
     }
 
     @keyframes blink {
@@ -31,7 +36,6 @@
         to { opacity: 0.4; }
     }
 
-    /* Canvas (código caindo) */
     canvas {
         position: absolute;
         top: 0;
@@ -45,7 +49,7 @@
 <canvas id="matrix"></canvas>
 
 <div class="center-text">
-    Baixando script… entrando no servidor privado…
+    Baixando script…
 </div>
 
 <script>
@@ -63,9 +67,7 @@
     const columns = canvas.width / fontSize;
     const drops = [];
 
-    for (let x = 0; x < columns; x++) {
-        drops[x] = 1;
-    }
+    for (let x = 0; x < columns; x++) drops[x] = 1;
 
     function draw() {
         ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
