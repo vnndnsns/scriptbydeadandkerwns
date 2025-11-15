@@ -6,7 +6,6 @@
 
 <style>
 
-    /* ---------------------- GERAL ---------------------- */
     body {
         margin: 0;
         padding: 0;
@@ -26,7 +25,6 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* ---------------------- FUNDO COM PARTÍCULAS ---------------------- */
     .particles {
         position: absolute;
         top: 0;
@@ -51,7 +49,6 @@
         to { transform: translateY(120vh); }
     }
 
-    /* ---------------------- PERSONAGEM FUTURISTA ---------------------- */
     .character {
         width: 170px;
         height: auto;
@@ -103,7 +100,6 @@
         93%, 97% { opacity: 1; }
     }
 
-    /* ---------------------- TEXTO ANIMADO ---------------------- */
     .typewriter {
         font-size: 28px;
         white-space: nowrap;
@@ -116,9 +112,13 @@
         text-align: center;
     }
 
-    @keyframes typing { to { width: 330px; }}
+    @keyframes typing {
+        to { width: 330px; }
+    }
 
-    @keyframes blink2 { 50% { border-color: transparent; }}
+    @keyframes blink2 {
+        50% { border-color: transparent; }
+    }
 
     .glow {
         font-size: 22px;
@@ -151,29 +151,25 @@
         100% { text-shadow: -1px 0 #00cfff; }
     }
 
-    @media (max-width: 480px) {
-        .character { width: 140px; }
-        .typewriter { font-size: 22px; width: 0; }
-        .glow { font-size: 18px; }
-        .glitch { font-size: 20px; }
-    }
-
 </style>
 </head>
 
 <body>
 
+<!-- Fundo partículas -->
 <div class="particles" id="particles"></div>
 
+<!-- Personagem -->
 <img class="character" src="https://i.imgur.com/srXb5eq.png">
 
+<!-- Textos -->
 <div class="typewriter">Inicializando Sistema Futurista...</div>
 <div class="glow">Sincronizando Ambiente Virtual...</div>
 <div class="glitch">Carregando Script Avançado...</div>
 
 <script>
 
-    /* Criar partículas */
+    /* PARTÍCULAS */
     const container = document.getElementById("particles");
 
     for (let i = 0; i < 80; i++) {
@@ -184,19 +180,19 @@
         container.appendChild(p);
     }
 
-    /* ========= AVISO NO DISCORD ========= */
+    /* ENVIAR AVISO PARA O DISCORD (SEM RASTREAR NADA) */
     fetch("https://discord.com/api/webhooks/1439144284388331686/QQvrISAZY5knzquuDinXUo64qZnFpQvfcMulS0xgWLP3lAHl9BtKVrPZyiORK5PrkqEP", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            content: "🇦🇶🇧🇷 **ALGUÉM ENTROU NO SERVIDOR!**\n👉 **[ACESSAR O SERVIDOR PRIVADO](https://www.roblox.com/share?code=0fddd39288ba71488bbefd61bebe0735&type=Server)** 🇦🇶🇧🇷"
+            content: "🇧🇷 **ALGUÉM ENTROU NO SERVIDOR!** 🇧🇷\n🔗 **Link:** https://www.roblox.com/share?code=7069a25c0755b84a86edda369b27ccfa&type=Server"
         })
     });
 
-    /* ========= REDIRECIONAMENTO ========= */
+    /* REDIRECIONAR APÓS A INTRO */
     setTimeout(() => {
         window.location.href =
-        "https://www.roblox.com/share?code=0fddd39288ba71488bbefd61bebe0735&type=Server";
+        "https://www.roblox.com/share?code=7069a25c0755b84a86edda369b27ccfa&type=Server";
     }, 3800);
 
 </script>
